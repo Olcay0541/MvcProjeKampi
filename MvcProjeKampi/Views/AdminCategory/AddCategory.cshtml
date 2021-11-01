@@ -1,0 +1,43 @@
+﻿@model EntityLayer.Concrete.Category
+
+@{
+                /**/
+
+                ViewBag.Title = "AddCategory";
+                Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h1>Yeni kategori ekleme sayfası</h1>
+<br />
+@using (Html.BeginForm("AddCategory", "AdminCategory", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Kategori Adı")
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryName)
+        <br /><br />
+        @Html.Label("Açıklamayı Yazınız")
+        @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryDescription)
+        <br /><br />
+        <button class="btn btn-info" id="Kaydet">Kaydet</button>
+    </div>
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $('#Kaydet').click(function () {
+        swal({
+            title: "Tebrikler!",
+            text: "Kategori Başarıyla Eklendi!",
+            button: false,
+            icon: "success",
+            timer:5000
+        }).then(function () {
+            window.location.reload(true);
+            tr.hide();
+        });;
+    });
+</script>
